@@ -1,0 +1,730 @@
+<style>
+:root{--ink:#1e2236;--navy:#242840;--slate:#2a3050;--slateL:#303860;--green:#1d9e75;--grnL:#2ec28a;--cream:#f2efe8;--mist:#9cb0c0;--silv:#cad4de;--gold:#c4a040;--sans:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;--serif:Georgia,"Noto Serif SC","SimSun",serif;--mono:"SF Mono","Fira Code","Consolas",monospace;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#1e2236;color:var(--cream);font-family:var(--sans);overflow-x:hidden;line-height:1.6;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:16px 60px;background:rgba(15,17,23,0.97);border-bottom:1px solid rgba(29,158,117,0.2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--cream);letter-spacing:.12em;}
+.nav-logo span{color:var(--green);}
+.nav-links{display:flex;gap:4px;list-style:none;flex-wrap:wrap;}
+.nav-links button{background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--silv);letter-spacing:.1em;padding:8px 14px;border-radius:4px;transition:background .15s,color .15s;}
+.nav-links button:hover{background:rgba(29,158,117,0.15);color:var(--cream);}
+section{padding:80px 60px;}
+.sec-label{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--green);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--green);}
+.sec-title{font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.4vw,46px);line-height:1.2;margin-bottom:52px;color:var(--cream);}
+/* HERO */
+#hero{min-height:100vh;padding-top:80px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding-left:60px;padding-right:60px;}
+.hero-tag{font-family:var(--mono);font-size:12px;letter-spacing:.28em;color:var(--green);text-transform:uppercase;margin-bottom:24px;}
+.hero-title{font-family:var(--serif);font-weight:900;font-size:clamp(44px,6vw,82px);line-height:.95;margin-bottom:10px;color:var(--cream);}
+.hero-en{font-family:var(--mono);font-size:clamp(20px,3vw,40px);color:var(--gold);display:block;letter-spacing:.04em;margin-top:6px;}
+.hero-sub{font-size:16px;line-height:1.85;color:var(--silv);max-width:440px;margin:28px 0 36px;}
+.hero-stats{display:flex;gap:30px;margin-bottom:36px;}
+.stat{border-left:2px solid var(--green);padding-left:12px;}
+.stat-n{font-family:var(--mono);font-size:26px;font-weight:700;color:var(--cream);}
+.stat-l{font-size:12px;color:var(--mist);margin-top:3px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-p{padding:15px 38px;background:var(--green);color:#262e3c;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;border:none;cursor:pointer;transition:background .2s,transform .15s;}
+.btn-p:hover{background:var(--grnL);transform:translateY(-2px);}
+.btn-o{padding:15px 38px;background:transparent;color:var(--cream);font-family:var(--mono);font-size:13px;letter-spacing:.1em;border:1px solid rgba(255,255,255,0.22);cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);}
+.btn-g{padding:15px 38px;background:transparent;color:var(--mist);font-family:var(--mono);font-size:13px;letter-spacing:.1em;border:1px solid rgba(255,255,255,0.1);cursor:pointer;transition:border-color .2s,color .2s;}
+.btn-g:hover{border-color:var(--green);color:var(--green);}
+.hero-vis{display:flex;align-items:center;justify-content:center;padding:20px;}
+.hero-vis svg{max-width:340px;width:100%;filter:drop-shadow(0 20px 60px rgba(29,158,117,0.18));}
+/* PROBLEM */
+#problem{background:#292e48;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.pain-card{background:#292e48;padding:36px 28px;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;transition:background .25s;}
+.pain-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .4s ease;}
+.pain-card:hover::before{height:100%;}
+.pain-card:hover{background:#2e3350;}
+.pain-badge{font-family:var(--mono);font-size:11px;font-weight:700;background:var(--green);color:#262e3c;padding:3px 9px;display:inline-block;margin-bottom:16px;letter-spacing:.08em;}
+.pain-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--cream);margin-bottom:12px;}
+.pain-body{font-size:14px;line-height:1.85;color:var(--silv);}
+.pain-quote{margin-top:16px;padding:12px 14px;background:rgba(29,158,117,0.07);border-left:2px solid var(--green);font-size:13px;font-style:italic;color:rgba(237,234,228,.6);line-height:1.65;}
+/* PRODUCT */
+#product{background:var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.layer{display:flex;gap:16px;padding:22px;border:1px solid rgba(255,255,255,0.06);margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .25s,background .25s;}
+.layer::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--green));transform:scaleX(0);transform-origin:left;transition:transform .38s ease;}
+.layer:hover::after{transform:scaleX(1);}
+.layer:hover{border-color:var(--gold);background:rgba(255,255,255,0.02);}
+.layer-num{font-family:var(--mono);font-size:12px;color:var(--gold);opacity:.6;min-width:20px;padding-top:2px;}
+.layer h4{font-family:var(--serif);font-size:17px;margin-bottom:7px;color:var(--cream);}
+.layer p{font-size:14px;color:var(--silv);line-height:1.85;}
+.core-box{background:rgba(29,158,117,0.07);border:1px solid rgba(29,158,117,0.3);padding:18px 22px;margin-bottom:22px;}
+.core-tag{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.2em;margin-bottom:7px;}
+.core-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--green);margin-bottom:6px;}
+.core-desc{font-size:14px;color:var(--silv);line-height:1.8;}
+/* SCENARIOS */
+#scenarios{background:#20233a;}
+.scen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.scen-card{background:#252840;padding:42px 34px;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;transition:background .25s,transform .2s,box-shadow .2s;}
+.scen-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .4s ease;}
+.scen-card:hover::before{height:100%;}
+.scen-card:hover{background:#2c2f4a;transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.3);}
+.scen-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
+.scen-icon{font-family:var(--mono);font-size:11px;font-weight:700;background:var(--green);color:#262e3c;padding:4px 9px;}
+.scen-badge{font-family:var(--mono);font-size:11px;padding:4px 9px;border:1px solid var(--green);color:var(--green);letter-spacing:.1em;}
+.scen-title{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:14px;color:var(--cream);}
+.scen-desc{font-size:14px;line-height:1.9;color:var(--silv);margin-bottom:20px;}
+.scen-feats{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.scen-feats li{font-size:13.5px;color:rgba(237,234,228,.7);padding-left:16px;position:relative;line-height:1.7;}
+.scen-feats li::before{content:'→';position:absolute;left:0;color:var(--gold);font-family:var(--mono);}
+.feat-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:8px 0;}
+/* MARKET */
+#market{background:#22253c;}
+.tracks{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:44px;}
+.track{background:#292e48;padding:32px 26px;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;transition:background .25s,transform .2s;}
+.track::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .45s ease;}
+.track:nth-child(2)::before{background:var(--gold);}
+.track:nth-child(3)::before{background:var(--silv);}
+.track:hover::before{height:100%;}
+.track:hover{background:#2e3350;transform:translateY(-2px);}
+.track-num{font-family:var(--mono);font-size:12px;color:var(--green);font-weight:700;letter-spacing:.14em;margin-bottom:8px;}
+.track-name{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:16px;color:var(--cream);}
+.track-size{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--green);line-height:1;margin-bottom:5px;}
+.track:nth-child(2) .track-size{color:var(--gold);}
+.track:nth-child(3) .track-size{color:var(--silv);}
+.track-cagr{font-size:13px;color:var(--mist);margin-bottom:12px;}
+.track-desc{font-size:14px;color:var(--silv);line-height:1.8;}
+.track-badge{margin-top:16px;padding:8px 12px;background:rgba(29,158,117,0.12);border:1px solid rgba(29,158,117,0.35);font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.08em;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.kpi{background:#292e48;padding:28px 22px;text-align:center;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;transition:background .25s,transform .2s;}
+.kpi::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .4s ease;}
+.kpi:hover::before{height:100%;}
+.kpi:hover{background:#2e3350;transform:translateY(-2px);}
+.kpi-n{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--green);margin-bottom:7px;}
+.kpi-l{font-size:13px;color:var(--silv);line-height:1.55;}
+/* ARCH */
+#arch{background:#24273f;}
+.aicore{background:linear-gradient(135deg,#1e3020,#1e2c3c);border:1px solid var(--green);padding:28px 32px;margin-bottom:24px;}
+.aicore-tag{font-family:var(--mono);font-size:11px;font-weight:700;background:var(--green);color:#262e3c;padding:3px 10px;display:inline-block;margin-bottom:12px;letter-spacing:.1em;}
+.aicore-title{font-family:var(--serif);font-size:21px;font-weight:700;color:var(--green);margin-bottom:7px;}
+.aicore-desc{font-size:14px;color:var(--silv);line-height:1.8;}
+.arch-layers{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.arch-layer{background:#24273f;padding:32px 26px;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;transition:background .25s,transform .2s;}
+.arch-layer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.arch-layer:nth-child(2)::before{background:var(--gold);}
+.arch-layer:nth-child(3)::before{background:var(--silv);}
+.arch-layer:hover::before{transform:scaleX(1);}
+.arch-layer:hover{background:#2e3350;transform:translateY(-2px);}
+.arch-lnum{font-family:var(--mono);font-size:11px;font-weight:700;background:var(--green);color:#262e3c;padding:3px 9px;display:inline-block;margin-bottom:16px;letter-spacing:.08em;}
+.arch-layer:nth-child(2) .arch-lnum{background:var(--gold);}
+.arch-layer:nth-child(3) .arch-lnum{background:var(--silv);color:var(--ink);}
+.arch-ltitle{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--cream);margin-bottom:14px;}
+.arch-items{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.arch-items li{font-size:14px;color:var(--silv);padding-left:12px;position:relative;line-height:1.7;}
+.arch-items li::before{content:'·';position:absolute;left:0;color:var(--green);font-size:16px;line-height:1.25;}
+/* BOM */
+#bom{background:#22253c;}
+.bom-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.bom-table{background:#292e48;padding:32px;border:1px solid rgba(255,255,255,0.06);}
+.bom-ttitle{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.2em;margin-bottom:22px;}
+.bom-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;}
+.bom-item{font-size:14px;color:var(--silv);}
+.bom-cost{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--gold);}
+.bom-bar-wrap{height:4px;background:rgba(255,255,255,0.05);margin-bottom:18px;}
+.bom-bar{height:100%;background:var(--green);}
+.bom-sep{height:1px;background:rgba(255,255,255,0.08);margin:16px 0;}
+.bom-tot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px;}
+.bom-tot-l{font-size:14px;font-weight:600;color:var(--cream);}
+.bom-tot-v{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--gold);}
+.bom-margin{padding:12px 16px;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.28);}
+.bom-margin p{font-family:var(--mono);font-size:13px;color:var(--green);letter-spacing:.06em;}
+.streams{display:flex;flex-direction:column;gap:16px;}
+.stream{padding:22px 26px;border:1px solid rgba(255,255,255,0.12);position:relative;overflow:hidden;transition:background .25s,transform .2s;}
+.stream::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .4s ease;}
+.stream:hover::before{height:100%;}
+.stream:hover{background:rgba(255,255,255,0.03);transform:translateY(-2px);}
+.stream-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+.stream-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--cream);}
+.stream-price{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--green);}
+.stream-sub{font-size:13px;color:var(--mist);margin-bottom:9px;}
+.stream-body{font-size:14px;color:var(--silv);line-height:1.8;}
+/* GTM */
+#gtm{background:#1e2135;}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;}
+.timeline::before{content:'';position:absolute;top:20px;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--green),var(--gold),var(--silv));opacity:.22;}
+.tphase{padding:48px 28px 28px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.045);border-top:none;transition:border-color .25s,background .25s;}
+.tphase::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.tphase:hover::after{transform:scaleX(1);}
+.tphase:hover{border-color:rgba(29,158,117,.35);background:rgba(255,255,255,0.02);}
+.tphase-dot{position:absolute;top:12px;left:28px;width:14px;height:14px;border-radius:50%;background:var(--ink);border:2px solid var(--green);}
+.tphase:nth-child(2) .tphase-dot{border-color:var(--gold);}
+.tphase:nth-child(3) .tphase-dot{background:var(--silv);border-color:var(--silv);}
+.tphase-period{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.12em;margin-bottom:12px;}
+.tphase:nth-child(2) .tphase-period{color:var(--gold);}
+.tphase:nth-child(3) .tphase-period{color:var(--silv);}
+.tphase-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--cream);margin-bottom:16px;}
+.tphase-items{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.tphase-items li{font-size:14px;color:var(--silv);padding-left:12px;position:relative;line-height:1.7;}
+.tphase-items li::before{content:'·';position:absolute;left:0;color:var(--green);font-size:16px;line-height:1.25;}
+/* MOAT */
+#moat{background:#22253c;}
+.moat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.moat-card{padding:32px 26px;border:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;transition:border-color .25s,transform .2s,background .25s;}
+.moat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .38s;}
+.moat-card:hover::after{transform:scaleX(1);}
+.moat-card:hover{transform:translateY(-2px);background:rgba(255,255,255,0.02);border-color:rgba(255,255,255,.14);}
+.moat-badge{font-family:var(--mono);font-size:11px;font-weight:700;background:var(--green);color:#262e3c;padding:3px 9px;display:inline-block;margin-bottom:16px;letter-spacing:.08em;}
+.moat-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--cream);margin-bottom:10px;}
+.moat-body{font-size:14px;color:var(--silv);line-height:1.85;}
+/* TEAM */
+#team{background:#24273f;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:20px;}
+.team-card{background:#292e48;padding:28px 22px;text-align:center;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden;transition:background .25s,transform .2s;}
+.team-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .4s ease;}
+.team-card:hover::before{height:100%;}
+.team-card:hover{background:#2e3350;transform:translateY(-2px);}
+.team-av{width:56px;height:56px;border-radius:50%;background:var(--slateL);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:var(--mono);font-size:18px;font-weight:700;color:var(--green);}
+.team-role{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.1em;margin-bottom:7px;}
+.team-domain{font-size:11px;color:var(--mist);margin-bottom:12px;}
+.team-bg{font-size:12px;color:var(--silv);line-height:1.75;}
+.advisors{padding:18px 24px;background:rgba(255,255,255,0.05);font-size:13.5px;color:var(--silv);line-height:1.7;}
+.advisors strong{color:var(--cream);}
+/* CTA */
+#cta{background:linear-gradient(135deg,#2a2d4e,#322b35,#2b3047);padding:100px 60px;text-align:center;position:relative;overflow:hidden;}
+#cta::before{content:'DESKMATE';position:absolute;font-family:var(--mono);font-size:160px;font-weight:700;color:rgba(255,255,255,.015);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+.cta-title{font-family:var(--serif);font-size:clamp(30px,4vw,54px);font-weight:900;margin-bottom:20px;position:relative;z-index:1;color:var(--cream);}
+.cta-sub{font-size:15px;color:var(--silv);max-width:520px;margin:0 auto 48px;line-height:1.85;position:relative;z-index:1;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+footer{background:#22253a;padding:24px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(29,158,117,0.15);}
+.f-logo{font-family:var(--mono);font-size:13px;color:var(--silv);}
+.f-logo span{color:var(--green);}
+.f-copy{font-family:var(--mono);font-size:10px;color:rgba(122,142,160,.4);letter-spacing:.1em;}
+/* MODAL */
+.modal-ov{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);align-items:center;justify-content:center;}
+.modal-ov.on{display:flex;}
+.modal{background:#363c58;border:1px solid rgba(29,158,117,.38);padding:44px;width:min(580px,92vw);position:relative;animation:mIn .25s ease;}
+@keyframes mIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.m-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--mist);font-size:22px;cursor:pointer;font-family:var(--mono);line-height:1;}
+.m-close:hover{color:var(--cream);}
+.m-tag{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:.24em;margin-bottom:14px;}
+.modal h3{font-family:var(--serif);font-size:26px;font-weight:700;margin-bottom:9px;color:var(--cream);}
+.modal p{font-size:13.5px;color:var(--silv);line-height:1.8;margin-bottom:26px;}
+.m-form{display:flex;flex-direction:column;gap:12px;}
+.m-form input,.m-form textarea,.m-form select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--cream);padding:12px 16px;font-family:var(--sans);font-size:13px;outline:none;width:100%;transition:border-color .2s;}
+.m-form input:focus,.m-form textarea:focus,.m-form select:focus{border-color:var(--green);}
+.m-form textarea{height:96px;resize:vertical;}
+.m-form select option{background:#363c58;}
+.m-submit{padding:14px 38px;background:var(--green);color:#262e3c;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;border:none;cursor:pointer;transition:background .2s;align-self:flex-start;}
+.m-submit:hover{background:var(--grnL);}
+.m-ok{display:none;text-align:center;padding:16px 0;}
+.m-ok .ck{font-size:44px;margin-bottom:14px;}
+.m-ok p{font-size:13.5px;color:var(--silv);}
+.hi-g{color:var(--green);}
+.hi-gold{color:var(--gold);}
+@media(max-width:860px){nav{padding:12px 20px;}.nav-links button{font-size:11px;padding:6px 10px;}section,#hero,#product,#bom{padding:60px 20px;}#hero,#product,.bom-wrap,.feat-inner{grid-template-columns:1fr;}.hero-vis{display:none;}.pain-grid,.scen-grid,.scen-sub,.tracks,.kpis,.arch-layers,.moat-grid,.team-grid,.timeline{grid-template-columns:1fr;}.scen-card.feat{grid-column:span 1;}}
+
+/* ════════════════════════════════════════
+   ANIMATIONS & DYNAMIC EFFECTS
+   ════════════════════════════════════════ */
+
+/* 1. Scroll-reveal: elements start invisible, slide up on enter */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+/* Stagger siblings inside a grid */
+.reveal-grid > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal-grid.in > * {
+  opacity: 1;
+  transform: none;
+}
+.reveal-grid.in > *:nth-child(1) { transition-delay: 0.00s; }
+.reveal-grid.in > *:nth-child(2) { transition-delay: 0.08s; }
+.reveal-grid.in > *:nth-child(3) { transition-delay: 0.16s; }
+.reveal-grid.in > *:nth-child(4) { transition-delay: 0.24s; }
+.reveal-grid.in > *:nth-child(5) { transition-delay: 0.32s; }
+.reveal-grid.in > *:nth-child(6) { transition-delay: 0.40s; }
+
+/* 2. Hero product SVG float */
+.hero-right svg {
+  animation: svgFloat 5s ease-in-out infinite;
+}
+@keyframes svgFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* 3. Glow pulse under SVG */
+.svg-glow {
+  position: absolute;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  width: 180px; height: 32px;
+  background: radial-gradient(ellipse, rgba(29,158,117,0.35) 0%, transparent 70%);
+  filter: blur(10px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+
+/* 4. Hero title: characters slide in on load */
+.hero-title {
+  animation: heroTitleIn 0.9s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes heroTitleIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-tag   { animation: heroTitleIn 0.7s 0.1s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-sub   { animation: heroTitleIn 0.7s 0.25s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-stats { animation: heroTitleIn 0.7s 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-btns  { animation: heroTitleIn 0.7s 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+.hero-right { animation: heroTitleIn 0.9s 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* 5. Market bars: grow width on scroll-enter */
+.bar-anim {
+  width: 0 !important;
+  transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+.bar-anim.in {
+  width: var(--bar-w) !important;
+}
+
+/* 6. Stat numbers: count-up glow on enter */
+.kpi-n {
+  transition: text-shadow 0.4s ease;
+}
+.kpi.in .kpi-n {
+  text-shadow: 0 0 24px rgba(29,158,117,0.6);
+}
+
+/* 7. Section tag slide-in from left */
+.section-tag {
+  overflow: hidden;
+}
+.section-tag.reveal.in::before {
+  animation: tagLine 0.6s 0.3s ease both;
+}
+@keyframes tagLine {
+  from { width: 0; }
+  to   { width: 24px; }
+}
+
+/* 8. Nav: slim progress bar at top */
+#nav-progress {
+  position: fixed; top: 58px; left: 0; right: 0;
+  height: 2px; z-index: 501;
+  background: linear-gradient(90deg, var(--green), var(--gold));
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* 9. Cards: lift on hover with glow */
+.p-card { transition: background 0.25s, transform 0.25s, box-shadow 0.25s; }
+.p-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(29,158,117,0.12);
+}
+.moat-card { transition: border-color 0.25s, transform 0.25s; }
+.moat-card:hover { transform: translateY(-3px); }
+.track { transition: transform 0.25s, box-shadow 0.25s; }
+.track:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+}
+
+/* 10. Cursor dot (subtle custom cursor) */
+#cursor-dot {
+  position: fixed; pointer-events: none; z-index: 9999;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s, transform 0.15s;
+  opacity: 0;
+}
+body:hover #cursor-dot { opacity: 0.7; }
+
+/* 11. Typing cursor blink in hero sub heading */
+.hero-title .en::after {
+  content: '|';
+  color: var(--green);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- MODALS -->
+<div class="modal-ov" id="m-pitch">
+  <div class="modal">
+    <button class="m-close" onclick="closeM('m-pitch')">×</button>
+    <div class="m-tag">INVESTOR RELATIONS · 2026</div>
+    <h3>申请投资人路演</h3>
+    <p>DESKMATE ONE 正在进行 Pre-A 轮融资，寻找桌面具身AI赛道的长期战略伙伴。填写以下信息，我们将在48小时内联系您。</p>
+    <form class="m-form" onsubmit="submitM(event,'m-pitch','ok-pitch')">
+      <input type="text" placeholder="您的姓名 / 机构名称" required>
+      <input type="email" placeholder="联系邮箱" required>
+      <select required><option value="" disabled selected>投资机构类型</option><option>天使 / 种子基金</option><option>VC / 风险投资</option><option>CVC / 产业资本</option><option>家族办公室</option><option>个人投资者</option></select>
+      <input type="text" placeholder="意向投资规模（可选）">
+      <textarea placeholder="请简述您的投资方向与对DESKMATE的兴趣..."></textarea>
+      <button type="submit" class="m-submit">提交申请 →</button>
+    </form>
+    <div class="m-ok" id="ok-pitch"><div class="ck">✓</div><p>申请已收到！<br>我们将在48小时内通过邮件联系您安排会议。</p></div>
+  </div>
+</div>
+<div class="modal-ov" id="m-bird">
+  <div class="modal">
+    <button class="m-close" onclick="closeM('m-bird')">×</button>
+    <div class="m-tag">EARLY BIRD · VIP PROGRAM</div>
+    <h3>加入早鸟体验计划</h3>
+    <p>锁定 VIP 价格 <strong style="color:var(--green)">$1,099</strong>（MSRP $1,799），优先获得发货资格，加入产品共创社区。</p>
+    <form class="m-form" onsubmit="submitM(event,'m-bird','ok-bird')">
+      <input type="text" placeholder="您的姓名" required>
+      <input type="email" placeholder="联系邮箱" required>
+      <select required><option value="" disabled selected>主要使用场景</option><option>软件开发 / 编程</option><option>学习 / 教育</option><option>内容创作 / 写作</option><option>游戏 / 直播</option><option>家庭 / 陪伴</option><option>企业 / 商务</option></select>
+      <input type="text" placeholder="您从哪里了解到 DESKMATE？">
+      <button type="submit" class="m-submit">锁定早鸟价格 →</button>
+    </form>
+    <div class="m-ok" id="ok-bird"><div class="ck">✓</div><p>已成功加入早鸟计划！<br>确认邮件将在24小时内发送。</p></div>
+  </div>
+</div>
+<div class="modal-ov" id="m-contact">
+  <div class="modal">
+    <button class="m-close" onclick="closeM('m-contact')">×</button>
+    <div class="m-tag">CONTACT · 联系我们</div>
+    <h3>联系 DESKMATE 团队</h3>
+    <p>媒体合作、渠道合作、技术合作或其他合作意向，欢迎联系我们。</p>
+    <form class="m-form" onsubmit="submitM(event,'m-contact','ok-contact')">
+      <input type="text" placeholder="您的姓名" required>
+      <input type="email" placeholder="联系邮箱" required>
+      <select><option value="" disabled selected>合作类型</option><option>媒体 / 报道</option><option>渠道 / 经销</option><option>技术合作</option><option>供应链 / OEM</option><option>其他</option></select>
+      <textarea placeholder="请简述您的合作想法..." required></textarea>
+      <button type="submit" class="m-submit">发送消息 →</button>
+    </form>
+    <div class="m-ok" id="ok-contact"><div class="ck">✓</div><p>消息已发送！<br>我们通常在1-2个工作日内回复。</p></div>
+  </div>
+</div>
+
+<!-- NAV — buttons with inline scrollIntoView, no href, no external links -->
+<nav>
+  <div class="nav-logo">DESK<span>MATE</span></div>
+  <ul class="nav-links">
+    <li><button onclick="document.getElementById('problem').scrollIntoView({behavior:'smooth'})">痛点</button></li>
+    <li><button onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">产品</button></li>
+    <li><button onclick="document.getElementById('scenarios').scrollIntoView({behavior:'smooth'})">场景</button></li>
+    <li><button onclick="document.getElementById('market').scrollIntoView({behavior:'smooth'})">市场</button></li>
+    <li><button onclick="document.getElementById('arch').scrollIntoView({behavior:'smooth'})">架构</button></li>
+    <li><button onclick="document.getElementById('gtm').scrollIntoView({behavior:'smooth'})">路线图</button></li>
+    <li><button onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'})">团队</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="hero-tag">商业提案 · 2026</div>
+    <h1 class="hero-title">桌面智能体<span class="hero-en">DESKMATE ONE</span></h1>
+    <p class="hero-sub">全球首款AI原生机器人显示器。6-DOF机械臂 + 4K竖屏 + 多模态感知——屏幕跟随你移动，AI在你开口前就已思考。</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n" data-count="94" data-prefix="$" data-suffix="B">$94B</div><div class="stat-l">2034年市场规模</div></div>
+      <div class="stat"><div class="stat-n" data-count="24.2" data-prefix="" data-suffix="%">24.2%</div><div class="stat-l">年复合增长率</div></div>
+      <div class="stat"><div class="stat-n">6-DOF</div><div class="stat-l">工业级机械臂</div></div>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-p" onclick="openM('m-pitch')">申请投资人路演</button>
+      <button class="btn-o" onclick="openM('m-bird')">加入早鸟计划</button>
+      <button class="btn-g" onclick="openM('m-contact')">联系我们</button>
+    </div>
+  </div>
+  <div class="hero-vis">
+    <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+      <rect x="80" y="362" width="160" height="30" rx="5" fill="#1a1c26" stroke="#c4a040" stroke-width="1"/>
+      <rect x="92" y="368" width="136" height="5" fill="#2a2c3a" rx="1"/><rect x="92" y="376" width="136" height="5" fill="#2a2c3a" rx="1"/>
+      <rect x="110" y="383" width="100" height="4" rx="2" fill="#1d9e75"/>
+      <ellipse cx="160" cy="386" rx="50" ry="7" fill="rgba(29,158,117,0.18)"/>
+      <circle cx="160" cy="358" r="13" fill="#24221a" stroke="#c4a040" stroke-width="1.5"/><circle cx="160" cy="358" r="6" fill="#c4a040"/>
+      <rect x="154" y="290" width="12" height="70" fill="#1e1c14" stroke="#c4a040" stroke-width="0.8"/>
+      <rect x="156" y="294" width="4" height="62" fill="#3a3020"/>
+      <circle cx="152" cy="288" r="16" fill="#24221a" stroke="#c4a040" stroke-width="1.5"/><circle cx="152" cy="288" r="8" fill="#c4a040"/>
+      <circle cx="152" cy="288" r="13" fill="none" stroke="#8a6820" stroke-width="0.6"/>
+      <rect x="146" y="208" width="11" height="82" fill="#1e1c14" stroke="#c4a040" stroke-width="0.8"/>
+      <rect x="148" y="213" width="4" height="72" fill="#3a3020"/>
+      <circle cx="144" cy="205" r="14" fill="#24221a" stroke="#c4a040" stroke-width="1.5"/><circle cx="144" cy="205" r="6" fill="#c4a040"/>
+      <rect x="80" y="199" width="66" height="11" fill="#1e1c14" stroke="#c4a040" stroke-width="0.7"/>
+      <rect x="38" y="88" width="150" height="152" rx="4" fill="#0e1018" stroke="#c4a040" stroke-width="1.2"/>
+      <circle cx="44" cy="94" r="3" fill="#c4a040"/><circle cx="182" cy="94" r="3" fill="#c4a040"/>
+      <circle cx="44" cy="234" r="3" fill="#c4a040"/><circle cx="182" cy="234" r="3" fill="#c4a040"/>
+      <circle cx="180" cy="92" r="3" fill="#1d9e75"/><circle cx="180" cy="92" r="5.5" fill="rgba(29,158,117,0.28)"/>
+      <circle cx="113" cy="150" r="50" fill="#14121a" stroke="#c4a040" stroke-width="1.4"/>
+      <circle cx="113" cy="150" r="38" fill="#08090e" stroke="#3a3828" stroke-width="0.8"/>
+      <circle cx="113" cy="150" r="28" fill="#0a1840" stroke="#1a3870" stroke-width="1"/>
+      <circle cx="113" cy="150" r="20" fill="#0c2060" stroke="#2a50b0" stroke-width="0.8"/>
+      <circle cx="113" cy="150" r="13" fill="#040818"/>
+      <ellipse cx="98" cy="137" rx="9" ry="5.5" fill="rgba(96,144,224,0.5)"/>
+      <ellipse cx="100" cy="139" rx="4.5" ry="2.8" fill="rgba(192,216,255,0.78)"/>
+      <rect x="47" y="228" width="132" height="10" fill="#12101a"/>
+      <circle cx="62" cy="233" r="2.2" fill="#4060a0"/><circle cx="72" cy="233" r="2.2" fill="#4060a0"/>
+      <circle cx="82" cy="233" r="2.2" fill="#4060a0"/><circle cx="144" cy="233" r="2.2" fill="#4060a0"/>
+      <rect x="47" y="240" width="132" height="7" fill="#0c0e18"/>
+      <rect x="54" y="241" width="5" height="4" fill="#c84020" rx="1"/>
+      <rect x="62" y="240" width="5" height="6" fill="#c84020" rx="1"/>
+      <rect x="70" y="239" width="5" height="7" fill="#c84020" rx="1"/>
+      <rect x="78" y="240" width="5" height="5" fill="#c84020" rx="1"/>
+      <rect x="86" y="239" width="5" height="7" fill="#c84020" rx="1"/>
+      <rect x="94" y="240" width="5" height="5" fill="#c84020" rx="1"/>
+      <rect x="102" y="240" width="5" height="6" fill="#c84020" rx="1"/>
+      <rect x="110" y="241" width="5" height="3" fill="#c84020" rx="1"/>
+      <rect x="118" y="239" width="5" height="7" fill="#c84020" rx="1"/>
+      <rect x="82" y="92" width="62" height="9" rx="3" fill="#1c1e2c"/>
+      <circle cx="96" cy="96.5" r="3.5" fill="#0a0b14"/><circle cx="96" cy="96.5" r="2.4" fill="#3535a0"/>
+      <circle cx="94.5" cy="95" r="0.8" fill="rgba(255,255,255,0.42)"/>
+      <circle cx="106" cy="96.5" r="2" fill="#5510c0"/>
+      <circle cx="116" cy="96.5" r="1.7" fill="#0a0b14"/><circle cx="116" cy="96.5" r="0.9" fill="#bb2200"/>
+      <circle cx="230" cy="120" r="2" fill="#1d9e75" opacity="0.55"><animate attributeName="cy" values="120;107;120" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;1;0.55" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="258" cy="200" r="1.5" fill="#c4a040" opacity="0.4"><animate attributeName="cy" values="200;187;200" dur="4s" repeatCount="indefinite"/></circle>
+    </svg>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="sec-label reveal"><span>01</span> 痛点</div>
+  <h2 class="sec-title reveal">为什么现有方案<br>还不够好？</h2>
+  <div class="pain-grid reveal-grid">
+    <div class="pain-card"><div class="pain-badge">PC</div><h3 class="pain-title">AI藏在屏幕里，没有存在感</h3><p class="pain-body">Copilot、Siri等以弹窗存在，用户极易忽视，使用黏性极低，难以建立持续互动习惯。</p><div class="pain-quote">"我知道有AI，但完全想不起来用它。"</div></div>
+    <div class="pain-card"><div class="pain-badge">AI</div><h3 class="pain-title">场景无感知，服务总慢半拍</h3><p class="pain-body">不知道你在写代码、打游戏还是开会，永远等你开口，从不主动出击。</p><div class="pain-quote">"我需要它在我需要之前就知道我需要什么。"</div></div>
+    <div class="pain-card"><div class="pain-badge">ZZZ</div><h3 class="pain-title">独居深夜，陪伴严重缺失</h3><p class="pain-body">全球3.3亿独居人口，屏幕里的文字无法替代物理存在感——纯软件永远无法填补的空缺。</p><div class="pain-quote">"一个人工作太压抑，想要有点动静。"</div></div>
+    <div class="pain-card"><div class="pain-badge">HLTH</div><h3 class="pain-title">健康管理无人主动介入</h3><p class="pain-body">久坐、长时间盯屏——现有工具只能被动提醒，很快被忽略，无法感知真实状态。</p><div class="pain-quote">"需要有东西帮我维持节奏感。"</div></div>
+    <div class="pain-card"><div class="pain-badge">DEV</div><h3 class="pain-title">开发者效率损耗巨大</h3><p class="pain-body">IDE、文档、Stack Overflow之间反复切换，知识工作者平均每23分钟被打断一次。</p><div class="pain-quote">"每次切屏查文档都出戏，累了。"</div></div>
+    <div class="pain-card"><div class="pain-badge">GAM</div><h3 class="pain-title">游戏辅助割裂，沉浸感破坏</h3><p class="pain-body">游戏玩家需同时盯主屏+查攻略+管通讯，注意力分裂严重，没有统一副屏智能体。</p><div class="pain-quote">"每次切屏查Build都出戏，烦死了。"</div></div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section id="product">
+  <div>
+    <div class="sec-label reveal"><span>02</span> 产品</div>
+    <h2 class="sec-title reveal">四层系统设计</h2>
+    <p style="font-size:13.5px;color:var(--silv);line-height:1.85;margin-bottom:28px;">AI Core 作为中枢引擎，驱动硬件层、感知层、应用层协同运作，感知→决策→执行全链路延迟 &lt;200ms。</p>
+    <div class="core-box reveal">
+      <div class="core-tag">AI CORE — 中枢引擎</div>
+      <div class="core-title">多模态大模型 + 场景决策引擎</div>
+      <div class="core-desc">端侧推理（隐私保护）+ 云端大模型（复杂推理）· 支持 Claude / GPT / 本地LLM<br>意图识别 → 技能调度 → 动作执行</div>
+    </div>
+  </div>
+  <div>
+    <div style="height:80px"></div>
+    <div class="layer"><div class="layer-num">L1</div><div><h4>硬件层 — 机械臂 + 传感器</h4><p>6自由度精密机械臂，静音 &lt;28dB；RGB摄像头+ToF深度传感器+IR人脸识别；超轻4K竖屏；磁吸底座双安装方式。</p></div></div>
+    <div class="layer"><div class="layer-num">L2</div><div><h4>感知层 — 场景理解引擎</h4><p>实时屏幕内容读取（OSD API）；用户姿态+行为模式识别；端侧模型处理隐私数据，延迟&lt;200ms；云端大模型负责复杂推理。</p></div></div>
+    <div class="layer"><div class="layer-num">L3</div><div><h4>应用层 — 场景技能市场</h4><p>6大场景技能内置；第三方开发者开放API；订阅制$9.9/月；机械臂姿态语言传递AI状态。</p></div></div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section id="scenarios">
+  <div class="sec-label reveal"><span>03</span> 场景</div>
+  <h2 class="sec-title reveal">六大桌面场景，<br>每个都是差异化机会</h2>
+  <!-- 6 cards: 3 columns × 2 rows, all equal -->
+  <div class="scen-grid reveal-grid">
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">DEV</div><span class="scen-badge">FLAGSHIP</span></div><h3 class="scen-title hi-gold">开发者场景 · Code Buddy</h3><p class="scen-desc">针对全球3000万+开发者。实时读取IDE内容，无需切换窗口即可获得代码审查与报错解析，双手永远不离键盘。</p><ul class="scen-feats"><li>报错→机械臂转向用户，主动分析原因</li><li>PR Review→声音播报关键diff，手不离键盘</li><li>专注过久→提醒起身，记录session摘要</li><li>本地代码永不上传，端侧分析，隐私安全</li></ul></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">EDU</div><span class="scen-badge">EDUCATION</span></div><h3 class="scen-title">学习模式 · Study Mate</h3><p class="scen-desc">番茄钟+走神检测+知识图谱，让学习更高效。</p><ul class="scen-feats"><li>走神/低头→轻声提示回到任务</li><li>遇到生词→主动弹出解释</li><li>每日生成知识摘要和薄弱点报告</li><li>家长端远程查看专注数据（儿童模式）</li></ul></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">WRT</div><span class="scen-badge">CREATIVE</span></div><h3 class="scen-title">写作模式 · Word Coach</h3><p class="scen-desc">实时语法、风格建议与灵感激发，陪你写到最后。</p><ul class="scen-feats"><li>长时间停顿→主动提供接续句或话题</li><li>写作节奏分析→找到个人创作峰值时间</li><li>语音朗读模式捕捉语感问题</li><li>配合截止日期的进度可视化提醒</li></ul></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">GAM</div><span class="scen-badge">GAMING</span></div><h3 class="scen-title">游戏模式 · Raid Partner</h3><p class="scen-desc">实时数据、策略建议与情绪感知陪伴。</p><ul class="scen-feats"><li>识别游戏→自动加载对应攻略知识库</li><li>连败检测→感知情绪低落，切换疏导模式</li><li>直播模式实时监控弹幕热点并汇报</li><li>疲劳检测：连续游戏超时后物理提示</li></ul></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">ZZZ</div><span class="scen-badge">COMPANION</span></div><h3 class="scen-title">陪伴模式 · Night Shift</h3><p class="scen-desc">情感陪伴与健康守护的综合方案。</p><ul class="scen-feats"><li>长期学习用户习惯，形成独特"性格"记忆</li><li>深夜疲劳检测→主动建议休息</li><li>老人版：定时用药提醒+异常状态通知家人</li><li>机械臂的物理存在感本身即是无声陪伴</li></ul></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">READ</div><span class="scen-badge">READING</span></div><h3 class="scen-title">阅读模式 · Paper Pal</h3><p class="scen-desc">论文速读与跨文献知识连接管理。</p><ul class="scen-feats"><li>PDF实时解析→关键术语自动标注关联</li><li>跨文献引用检测→"此论点被3篇文章挑战"</li><li>声音朗读模式+自动生成可导出阅读笔记</li><li>阅读速度与理解度个性化追踪调节</li></ul></div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="sec-label reveal"><span>04</span> 市场</div>
+  <h2 class="sec-title reveal">三大高速赛道<br>的交汇处</h2>
+  <div class="tracks reveal-grid">
+    <div class="track"><div class="track-num">① 赛道一</div><div class="track-name">AI伴侣机器人</div><div class="track-size">$94.2B</div><div class="track-cagr">by 2034 · CAGR 24.2%</div><p class="track-desc">从宠物机器人到具身AI助手，全球消费者对"有形体"AI的需求正在爆发。</p></div>
+    <div class="track"><div class="track-num">② 赛道二</div><div class="track-name">AI智能显示终端</div><div class="track-size">$789M</div><div class="track-cagr">by 2031 · CAGR 7.1%</div><p class="track-desc">从固定显示器到可感知、可互动的动态终端，屏幕正在进化为"主动伙伴"。</p><div class="track-badge">DESKMATE ONE 位于三者交汇点 ✦</div></div>
+    <div class="track"><div class="track-num">③ 赛道三</div><div class="track-name">具身AI硬件</div><div class="track-size">$124.8B</div><div class="track-cagr">by 2030 · CAGR 38.5%</div><p class="track-desc">AI从云端走向物理空间，机器人+传感器+大模型一体化超高速成长。</p></div>
+  </div>
+  <div class="kpis reveal-grid">
+    <div class="kpi"><div class="kpi-n">3000万+</div><div class="kpi-l">全球活跃开发者<br>核心目标用户群</div></div>
+    <div class="kpi"><div class="kpi-n">3.3亿</div><div class="kpi-l">全球长期独居人口<br>陪伴场景需求</div></div>
+    <div class="kpi"><div class="kpi-n">$1,099</div><div class="kpi-l">VIP定价<br>对标CyboPal ONE</div></div>
+    <div class="kpi"><div class="kpi-n">Apple J595</div><div class="kpi-l">同赛道巨头<br>入场验证</div></div>
+  </div>
+</section>
+
+<!-- ARCH -->
+<section id="arch">
+  <div class="sec-label reveal"><span>05</span> 系统架构</div>
+  <h2 class="sec-title reveal">四层架构<br>AI Core驱动三层能力</h2>
+  <div class="aicore">
+    <div class="aicore-tag">AI CORE — 中枢引擎</div>
+    <div class="aicore-title">多模态大模型 + 场景决策引擎</div>
+    <div class="aicore-desc">端侧推理（隐私保护）+ 云端大模型（复杂推理）· 支持 Claude / GPT / 本地LLM · 意图识别 → 技能调度 → 动作执行</div>
+  </div>
+  <div class="arch-layers reveal-grid">
+    <div class="arch-layer"><div class="arch-lnum">L1 硬件层</div><div class="arch-ltitle">机械臂 + 传感器</div><ul class="arch-items"><li>6DOF精密机械臂，静音 &lt;28dB</li><li>RGB摄像头+ToF深度+IR人脸识别</li><li>4K办公级竖屏（市面最轻）</li><li>磁吸底座，桌面/背板双安装</li></ul></div>
+    <div class="arch-layer"><div class="arch-lnum">L2 感知层</div><div class="arch-ltitle">场景理解引擎</div><ul class="arch-items"><li>实时屏幕内容读取（OSD API）</li><li>用户姿态+行为模式识别</li><li>端侧模型隐私处理，延迟&lt;200ms</li><li>云端大模型复杂推理调度</li></ul></div>
+    <div class="arch-layer"><div class="arch-lnum">L3 应用层</div><div class="arch-ltitle">场景技能市场</div><ul class="arch-items"><li>6大场景技能内置</li><li>第三方开发者开放API</li><li>订阅制：$9.9/月 Pro技能包</li><li>机械臂姿态语言表达AI状态</li></ul></div>
+  </div>
+</section>
+
+<!-- BOM -->
+<section id="bom">
+  <div class="sec-label reveal"><span>06</span> 商业模式</div>
+  <h2 class="sec-title reveal">定价逻辑 × 三类收入来源</h2>
+  <div class="bom-wrap reveal-grid">
+    <div class="bom-table">
+      <div class="bom-ttitle">BOM COST BREAKDOWN</div>
+      <div class="bom-row"><span class="bom-item">6-DOF机械臂（工业级）</span><span class="bom-cost">$220</span></div>
+      <div class="bom-bar-wrap"><div class="bom-bar" style="width:35%"></div></div>
+      <div class="bom-row"><span class="bom-item">4K显示屏模组</span><span class="bom-cost">$180</span></div>
+      <div class="bom-bar-wrap"><div class="bom-bar" style="width:28%"></div></div>
+      <div class="bom-row"><span class="bom-item">传感器阵列（CAM+ToF+IR）</span><span class="bom-cost">$85</span></div>
+      <div class="bom-bar-wrap"><div class="bom-bar" style="width:13%"></div></div>
+      <div class="bom-row"><span class="bom-item">主板 / 芯片 / 电源</span><span class="bom-cost">$95</span></div>
+      <div class="bom-bar-wrap"><div class="bom-bar" style="width:15%"></div></div>
+      <div class="bom-row"><span class="bom-item">外壳 / 机构 / 包装</span><span class="bom-cost">$55</span></div>
+      <div class="bom-bar-wrap"><div class="bom-bar" style="width:9%"></div></div>
+      <div class="bom-sep"></div>
+      <div class="bom-tot"><span class="bom-tot-l">BOM合计（含制造）</span><span class="bom-tot-v">~$635</span></div>
+      <div class="bom-margin"><p>VIP售价 $1,099  →  毛利率 ≈ 42%</p><p style="margin-top:4px;opacity:.7;">MSRP $1,799 → 渠道成熟后毛利率 ≈ 65%</p></div>
+    </div>
+    <div class="streams reveal-grid">
+      <div class="stream"><div class="stream-top"><div class="stream-title">硬件销售</div><div class="stream-price">$1,099</div></div><div class="stream-sub">VIP早鸟价 / MSRP $1,799</div><div class="stream-body">开发者版/学生版/游戏版/老年版四条产品线，覆盖直销+科技零售+显示器品牌OEM合作渠道。</div></div>
+      <div class="stream"><div class="stream-top"><div class="stream-title">软件订阅</div><div class="stream-price">$9.9/月</div></div><div class="stream-sub">Pro技能包 · 预计转化率18%</div><div class="stream-body">基础功能免费，高级场景技能订阅制。预计订阅LTV达硬件毛利3.2×，2028年后超越硬件成为主要收入。</div></div>
+      <div class="stream"><div class="stream-top"><div class="stream-title">技能生态</div><div class="stream-price">30%</div></div><div class="stream-sub">技能商店分成 · 类App Store</div><div class="stream-body">开放SDK吸引第三方开发者，平台价值随技能数量指数增长，先发积累形成生态护城河。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GTM -->
+<section id="gtm">
+  <div class="sec-label reveal"><span>07</span> 路线图</div>
+  <h2 class="sec-title reveal">三阶段<br>市场渗透策略</h2>
+  <div class="timeline">
+    <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2026 — 技术验证期</div><h3 class="tphase-title">技术验证<br>&amp; 社区引爆</h3><ul class="tphase-items"><li>开发者版众筹：GitHub+YC社区</li><li>MVP定价 $299 区间</li><li>开源核心SDK，建立开发者社区</li><li>KOL联测：科技博主/程序员</li><li>目标：1万台预售，验证PMF</li></ul></div>
+    <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2027—2028 — 扩张期</div><h3 class="tphase-title">消费者扩张<br>&amp; 场景延伸</h3><ul class="tphase-items"><li>四条产品线同步上市</li><li>教育机构+游戏外设品牌合作</li><li>技能商店：100+第三方技能包</li><li>订阅服务正式上线</li><li>目标：ARR $1500万，用户10万+</li></ul></div>
+    <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2029+ — 平台化</div><h3 class="tphase-title">平台化<br>&amp; 生态构建</h3><ul class="tphase-items"><li>开放硬件接口，第三方臂接入</li><li>企业版：会议室AI助手</li><li>数据飞轮：专属场景模型训练</li><li>显示器品牌内置战略合作</li><li>目标：估值$5亿+，B轮融资</li></ul></div>
+  </div>
+</section>
+
+<!-- MOAT -->
+<section id="moat">
+  <div class="sec-label reveal"><span>08</span> 护城河</div>
+  <h2 class="sec-title reveal">六大护城河<br>为什么这件事我们能做成</h2>
+  <div class="moat-grid reveal-grid">
+    <div class="moat-card"><div class="moat-badge">DATA</div><h4 class="moat-title">数据飞轮效应</h4><p class="moat-body">用户行为数据不可迁移，个性化积累形成超强绑定，使用越多体验越好，留存越高。</p></div>
+    <div class="moat-card"><div class="moat-badge">SKIL</div><h4 class="moat-title">技能生态护城河</h4><p class="moat-body">先发积累的开发者社区与内容生态，类App Store模式，平台价值随技能数量指数增长。</p></div>
+    <div class="moat-card"><div class="moat-badge">EMO</div><h4 class="moat-title">情感资产沉淀</h4><p class="moat-body">与用户共处数百天后形成独特角色记忆，超越社交关系的留存壁垒，极难被替代。</p></div>
+    <div class="moat-card"><div class="moat-badge">TECH</div><h4 class="moat-title">软硬件整合优势</h4><p class="moat-body">纯软无硬件控制权，纯硬无AI能力。一体化架构构建三个维度同时领先的壁垒。</p></div>
+    <div class="moat-card"><div class="moat-badge">PRIV</div><h4 class="moat-title">隐私优先架构</h4><p class="moat-body">端侧处理敏感数据，在大厂因数据问题受制于监管时，隐私优先定位成为信任护城河。</p></div>
+    <div class="moat-card"><div class="moat-badge">MRKT</div><h4 class="moat-title">垂直场景先手</h4><p class="moat-body">开发者/学生/游戏玩家是高粘性意见领袖，攻克后自然渗透大众消费者，扩散路径清晰。</p></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="sec-label reveal"><span>09</span> 团队</div>
+  <h2 class="sec-title reveal">核心团队<br>机器人 × AI × 消费电子的交叉基因</h2>
+  <div class="team-grid reveal-grid">
+    <div class="team-card"><div class="team-av">机</div><div class="team-role">CEO / Co-founder</div><div class="team-domain">机器人系统</div><div class="team-bg">南洋理工大学机器人博士<br>前L4自动驾驶负责人<br>20年机器人+智驾算法经验</div></div>
+    <div class="team-card"><div class="team-av">算</div><div class="team-role">CTO / Co-founder</div><div class="team-domain">算法</div><div class="team-bg">前汽车电子龙头智驾算法负责人<br>数据闭环专家<br>多款车型量产开发经验</div></div>
+    <div class="team-card"><div class="team-av">A</div><div class="team-role">CPO / Co-founder</div><div class="team-domain">AI产品</div><div class="team-bg">前大厂AI产品经理<br>工程+项目管理背景<br>主导过多款陪伴机器人0-1</div></div>
+    <div class="team-card"><div class="team-av">工</div><div class="team-role">VP Engineering</div><div class="team-domain">工程架构</div><div class="team-bg">前云计算平台技术专家<br>端侧+云端混合架构专家<br>开源社区核心贡献者</div></div>
+  </div>
+  <div class="advisors reveal"><strong>顾问团队：</strong>南洋理工大学机器人研究中心 (RRC) &nbsp;·&nbsp; 新加坡国立大学先进机器人中心 (ARC) &nbsp;·&nbsp; 华南理工大学数据科学与人工智能实验室 (D*SAIL)</div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2 class="cta-title reveal">桌面，是下一个<br><span class="hi-g">AI 具身化</span>战场</h2>
+  <p class="cta-sub reveal">Apple、CyboPal、Lenovo 都在验证这个赛道。先行者的优势窗口正在关闭。DESKMATE 寻找共同定义这个品类的合伙人与投资者。</p>
+  <div class="cta-btns reveal">
+    <button class="btn-p" onclick="openM('m-pitch')">申请投资人路演</button>
+    <button class="btn-o" onclick="openM('m-bird')">加入早鸟体验计划</button>
+    <button class="btn-g" onclick="openM('m-contact')">联系我们</button>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">DESK<span>MATE</span> TECHNOLOGY · 2026</div>
+  <div class="f-copy">COMMERCIAL IN CONFIDENCE · contact@deskmate.ai</div>
+</footer>
+
+<script>
+function openM(id){document.getElementById(id).classList.add('on');document.body.style.overflow='hidden';}
+function closeM(id){document.getElementById(id).classList.remove('on');document.body.style.overflow='';}
+document.querySelectorAll('.modal-ov').forEach(function(ov){ov.addEventListener('click',function(e){if(e.target===ov)closeM(ov.id);});});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal-ov.on').forEach(function(ov){closeM(ov.id);});});
+function submitM(e,mId,okId){e.preventDefault();var f=e.target;f.style.display='none';document.getElementById(okId).style.display='block';setTimeout(function(){closeM(mId);f.style.display='flex';document.getElementById(okId).style.display='none';f.reset();},3200);}
+
+// ── SCROLL REVEAL (IntersectionObserver) ──
+(function() {
+  var revealEls = document.querySelectorAll('.reveal, .reveal-grid');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        entry.target.querySelectorAll('.bar-anim').forEach(function(b){ b.classList.add('in'); });
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+  revealEls.forEach(function(el) { io.observe(el); });
+})();
+
+// ── SCROLL PROGRESS BAR ──
+var _prog = document.getElementById('nav-progress');
+window.addEventListener('scroll', function() {
+  var s = window.pageYOffset;
+  var t = document.documentElement.scrollHeight - window.innerHeight;
+  if (_prog) _prog.style.transform = 'scaleX(' + (t > 0 ? s/t : 0) + ')';
+}, { passive: true });
+
+// ── CUSTOM CURSOR DOT ──
+var _dot = document.getElementById('cursor-dot');
+if (_dot) {
+  document.addEventListener('mousemove', function(e) {
+    _dot.style.left = e.clientX + 'px';
+    _dot.style.top  = e.clientY + 'px';
+  }, { passive: true });
+}
+
+// ── COUNT-UP for hero stats ──
+function countUp(el, target, duration) {
+  var start = 0, step = target / (duration / 16);
+  var iv = setInterval(function() {
+    start += step;
+    if (start >= target) { start = target; clearInterval(iv); }
+    var isInt = Number.isInteger(target);
+    var val = isInt ? Math.round(start) : parseFloat(start.toFixed(1));
+    el.textContent = el.dataset.prefix + val + el.dataset.suffix;
+  }, 16);
+}
+setTimeout(function() {
+  document.querySelectorAll('[data-count]').forEach(function(el) {
+    countUp(el, parseFloat(el.dataset.count), 1100);
+  });
+}, 600);
+
+// ── PARALLAX hero grid bg ──
+var _gbg = document.querySelector('#hero .grid-bg');
+window.addEventListener('scroll', function() {
+  if (_gbg) _gbg.style.transform = 'translateY(' + window.pageYOffset * 0.12 + 'px)';
+}, { passive: true });
+</script>
+<div id="cursor-dot"></div>
+</body>
+</html>
