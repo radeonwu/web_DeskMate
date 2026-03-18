@@ -350,6 +350,38 @@ footer{background:#22253a;padding:24px 60px;display:flex;justify-content:space-b
 }
 body:hover #cursor-dot { opacity: 0.7; }
 
+/* 11b. RSS Skill Store cross-link styles */
+.nav-rss-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  color: var(--green) !important; font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.04em; text-decoration: none;
+  border: 1px solid rgba(29,158,117,0.35); border-radius: 20px;
+  padding: 3px 11px; transition: background 0.2s, border-color 0.2s;
+}
+.nav-rss-link:hover { background: rgba(29,158,117,0.12); border-color: var(--green); }
+.scen-rss { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.07); }
+.scen-rss a {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11.5px; color: var(--green); font-weight: 600;
+  text-decoration: none; letter-spacing: 0.03em;
+  opacity: 0.85; transition: opacity 0.15s;
+}
+.scen-rss a:hover { opacity: 1; }
+.rss-platform-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(29,158,117,0.1); border: 1px solid rgba(29,158,117,0.3);
+  border-radius: 8px; padding: 9px 14px; margin-top: 14px;
+  font-size: 12.5px; color: var(--silv); line-height: 1.5;
+}
+.rss-platform-badge a { color: var(--green); font-weight: 600; text-decoration: none; }
+.rss-platform-badge a:hover { text-decoration: underline; }
+.f-rss { margin-top: 10px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+.f-rss a {
+  font-size: 11.5px; color: var(--mist); text-decoration: none;
+  letter-spacing: 0.04em; transition: color 0.15s;
+}
+.f-rss a:hover { color: var(--green); }
+
 /* 11. Typing cursor blink in hero sub heading */
 .hero-title .en::after {
   content: '|';
@@ -428,6 +460,7 @@ body:hover #cursor-dot { opacity: 0.7; }
     <li><button onclick="document.getElementById('arch').scrollIntoView({behavior:'smooth'})">架构</button></li>
     <li><button onclick="document.getElementById('gtm').scrollIntoView({behavior:'smooth'})">路线图</button></li>
     <li><button onclick="document.getElementById('team').scrollIntoView({behavior:'smooth'})">团队</button></li>
+    <li><a class="nav-rss-link" href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">技能商店 ↗</a></li>
   </ul>
 </nav>
 
@@ -528,7 +561,7 @@ body:hover #cursor-dot { opacity: 0.7; }
     <div style="height:80px"></div>
     <div class="layer"><div class="layer-num">L1</div><div><h4>硬件层 — 机械臂 + 传感器</h4><p>6自由度精密机械臂，静音 &lt;28dB；RGB摄像头+ToF深度传感器+IR人脸识别；超轻4K竖屏；磁吸底座双安装方式。</p></div></div>
     <div class="layer"><div class="layer-num">L2</div><div><h4>感知层 — 场景理解引擎</h4><p>实时屏幕内容读取（OSD API）；用户姿态+行为模式识别；端侧模型处理隐私数据，延迟&lt;200ms；云端大模型负责复杂推理。</p></div></div>
-    <div class="layer"><div class="layer-num">L3</div><div><h4>应用层 — 场景技能市场</h4><p>6大场景技能内置；第三方开发者开放API；订阅制$9.9/月；机械臂姿态语言传递AI状态。</p></div></div>
+    <div class="layer"><div class="layer-num">L3</div><div><h4>应用层 — 场景技能市场</h4><p>6大场景技能内置；第三方开发者开放API；订阅制$9.9/月；机械臂姿态语言传递AI状态。</p><div class="rss-platform-badge">技能由 <a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">Robot Skill Store</a> 注册、验证、分发——统一的技能治理与证据平台。</div></div></div>
   </div>
 </section>
 
@@ -538,12 +571,12 @@ body:hover #cursor-dot { opacity: 0.7; }
   <h2 class="sec-title reveal">六大桌面场景，<br>每个都是差异化机会</h2>
   <!-- 6 cards: 3 columns × 2 rows, all equal -->
   <div class="scen-grid reveal-grid">
-    <div class="scen-card"><div class="scen-top"><div class="scen-icon">DEV</div><span class="scen-badge">FLAGSHIP</span></div><h3 class="scen-title hi-gold">开发者场景 · Code Buddy</h3><p class="scen-desc">针对全球3000万+开发者。实时读取IDE内容，无需切换窗口即可获得代码审查与报错解析，双手永远不离键盘。</p><ul class="scen-feats"><li>报错→机械臂转向用户，主动分析原因</li><li>PR Review→声音播报关键diff，手不离键盘</li><li>专注过久→提醒起身，记录session摘要</li><li>本地代码永不上传，端侧分析，隐私安全</li></ul></div>
-    <div class="scen-card"><div class="scen-top"><div class="scen-icon">EDU</div><span class="scen-badge">EDUCATION</span></div><h3 class="scen-title">学习模式 · Study Mate</h3><p class="scen-desc">番茄钟+走神检测+知识图谱，让学习更高效。</p><ul class="scen-feats"><li>走神/低头→轻声提示回到任务</li><li>遇到生词→主动弹出解释</li><li>每日生成知识摘要和薄弱点报告</li><li>家长端远程查看专注数据（儿童模式）</li></ul></div>
-    <div class="scen-card"><div class="scen-top"><div class="scen-icon">WRT</div><span class="scen-badge">CREATIVE</span></div><h3 class="scen-title">写作模式 · Word Coach</h3><p class="scen-desc">实时语法、风格建议与灵感激发，陪你写到最后。</p><ul class="scen-feats"><li>长时间停顿→主动提供接续句或话题</li><li>写作节奏分析→找到个人创作峰值时间</li><li>语音朗读模式捕捉语感问题</li><li>配合截止日期的进度可视化提醒</li></ul></div>
-    <div class="scen-card"><div class="scen-top"><div class="scen-icon">GAM</div><span class="scen-badge">GAMING</span></div><h3 class="scen-title">游戏模式 · Raid Partner</h3><p class="scen-desc">实时数据、策略建议与情绪感知陪伴。</p><ul class="scen-feats"><li>识别游戏→自动加载对应攻略知识库</li><li>连败检测→感知情绪低落，切换疏导模式</li><li>直播模式实时监控弹幕热点并汇报</li><li>疲劳检测：连续游戏超时后物理提示</li></ul></div>
-    <div class="scen-card"><div class="scen-top"><div class="scen-icon">ZZZ</div><span class="scen-badge">COMPANION</span></div><h3 class="scen-title">陪伴模式 · Night Shift</h3><p class="scen-desc">情感陪伴与健康守护的综合方案。</p><ul class="scen-feats"><li>长期学习用户习惯，形成独特"性格"记忆</li><li>深夜疲劳检测→主动建议休息</li><li>老人版：定时用药提醒+异常状态通知家人</li><li>机械臂的物理存在感本身即是无声陪伴</li></ul></div>
-    <div class="scen-card"><div class="scen-top"><div class="scen-icon">READ</div><span class="scen-badge">READING</span></div><h3 class="scen-title">阅读模式 · Paper Pal</h3><p class="scen-desc">论文速读与跨文献知识连接管理。</p><ul class="scen-feats"><li>PDF实时解析→关键术语自动标注关联</li><li>跨文献引用检测→"此论点被3篇文章挑战"</li><li>声音朗读模式+自动生成可导出阅读笔记</li><li>阅读速度与理解度个性化追踪调节</li></ul></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">DEV</div><span class="scen-badge">FLAGSHIP</span></div><h3 class="scen-title hi-gold">开发者场景 · Code Buddy</h3><p class="scen-desc">针对全球3000万+开发者。实时读取IDE内容，无需切换窗口即可获得代码审查与报错解析，双手永远不离键盘。</p><ul class="scen-feats"><li>报错→机械臂转向用户，主动分析原因</li><li>PR Review→声音播报关键diff，手不离键盘</li><li>专注过久→提醒起身，记录session摘要</li><li>本地代码永不上传，端侧分析，隐私安全</li></ul><div class="scen-rss"><a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">浏览 Code Buddy 技能 →</a></div></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">EDU</div><span class="scen-badge">EDUCATION</span></div><h3 class="scen-title">学习模式 · Study Mate</h3><p class="scen-desc">番茄钟+走神检测+知识图谱，让学习更高效。</p><ul class="scen-feats"><li>走神/低头→轻声提示回到任务</li><li>遇到生词→主动弹出解释</li><li>每日生成知识摘要和薄弱点报告</li><li>家长端远程查看专注数据（儿童模式）</li></ul><div class="scen-rss"><a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">浏览 Study Mate 技能 →</a></div></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">WRT</div><span class="scen-badge">CREATIVE</span></div><h3 class="scen-title">写作模式 · Word Coach</h3><p class="scen-desc">实时语法、风格建议与灵感激发，陪你写到最后。</p><ul class="scen-feats"><li>长时间停顿→主动提供接续句或话题</li><li>写作节奏分析→找到个人创作峰值时间</li><li>语音朗读模式捕捉语感问题</li><li>配合截止日期的进度可视化提醒</li></ul><div class="scen-rss"><a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">浏览 Word Coach 技能 →</a></div></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">GAM</div><span class="scen-badge">GAMING</span></div><h3 class="scen-title">游戏模式 · Raid Partner</h3><p class="scen-desc">实时数据、策略建议与情绪感知陪伴。</p><ul class="scen-feats"><li>识别游戏→自动加载对应攻略知识库</li><li>连败检测→感知情绪低落，切换疏导模式</li><li>直播模式实时监控弹幕热点并汇报</li><li>疲劳检测：连续游戏超时后物理提示</li></ul><div class="scen-rss"><a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">浏览 Raid Partner 技能 →</a></div></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">ZZZ</div><span class="scen-badge">COMPANION</span></div><h3 class="scen-title">陪伴模式 · Night Shift</h3><p class="scen-desc">情感陪伴与健康守护的综合方案。</p><ul class="scen-feats"><li>长期学习用户习惯，形成独特"性格"记忆</li><li>深夜疲劳检测→主动建议休息</li><li>老人版：定时用药提醒+异常状态通知家人</li><li>机械臂的物理存在感本身即是无声陪伴</li></ul><div class="scen-rss"><a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">浏览 Night Shift 技能 →</a></div></div>
+    <div class="scen-card"><div class="scen-top"><div class="scen-icon">READ</div><span class="scen-badge">READING</span></div><h3 class="scen-title">阅读模式 · Paper Pal</h3><p class="scen-desc">论文速读与跨文献知识连接管理。</p><ul class="scen-feats"><li>PDF实时解析→关键术语自动标注关联</li><li>跨文献引用检测→"此论点被3篇文章挑战"</li><li>声音朗读模式+自动生成可导出阅读笔记</li><li>阅读速度与理解度个性化追踪调节</li></ul><div class="scen-rss"><a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">浏览 Paper Pal 技能 →</a></div></div>
   </div>
 </section>
 
@@ -576,7 +609,7 @@ body:hover #cursor-dot { opacity: 0.7; }
   <div class="arch-layers reveal-grid">
     <div class="arch-layer"><div class="arch-lnum">L1 硬件层</div><div class="arch-ltitle">机械臂 + 传感器</div><ul class="arch-items"><li>6DOF精密机械臂，静音 &lt;28dB</li><li>RGB摄像头+ToF深度+IR人脸识别</li><li>4K办公级竖屏（市面最轻）</li><li>磁吸底座，桌面/背板双安装</li></ul></div>
     <div class="arch-layer"><div class="arch-lnum">L2 感知层</div><div class="arch-ltitle">场景理解引擎</div><ul class="arch-items"><li>实时屏幕内容读取（OSD API）</li><li>用户姿态+行为模式识别</li><li>端侧模型隐私处理，延迟&lt;200ms</li><li>云端大模型复杂推理调度</li></ul></div>
-    <div class="arch-layer"><div class="arch-lnum">L3 应用层</div><div class="arch-ltitle">场景技能市场</div><ul class="arch-items"><li>6大场景技能内置</li><li>第三方开发者开放API</li><li>订阅制：$9.9/月 Pro技能包</li><li>机械臂姿态语言表达AI状态</li></ul></div>
+    <div class="arch-layer"><div class="arch-lnum">L3 应用层</div><div class="arch-ltitle">场景技能市场</div><ul class="arch-items"><li>6大场景技能内置</li><li>第三方开发者开放API</li><li>订阅制：$9.9/月 Pro技能包</li><li>机械臂姿态语言表达AI状态</li></ul><div class="rss-platform-badge">技能由 <a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">Robot Skill Store</a> 注册、验证、分发——统一的技能治理与证据平台。</div></div>
   </div>
 </section>
 
@@ -604,7 +637,7 @@ body:hover #cursor-dot { opacity: 0.7; }
     <div class="streams reveal-grid">
       <div class="stream"><div class="stream-top"><div class="stream-title">硬件销售</div><div class="stream-price">$1,099</div></div><div class="stream-sub">VIP早鸟价 / MSRP $1,799</div><div class="stream-body">开发者版/学生版/游戏版/老年版四条产品线，覆盖直销+科技零售+显示器品牌OEM合作渠道。</div></div>
       <div class="stream"><div class="stream-top"><div class="stream-title">软件订阅</div><div class="stream-price">$9.9/月</div></div><div class="stream-sub">Pro技能包 · 预计转化率18%</div><div class="stream-body">基础功能免费，高级场景技能订阅制。预计订阅LTV达硬件毛利3.2×，2028年后超越硬件成为主要收入。</div></div>
-      <div class="stream"><div class="stream-top"><div class="stream-title">技能生态</div><div class="stream-price">30%</div></div><div class="stream-sub">技能商店分成 · 类App Store</div><div class="stream-body">开放SDK吸引第三方开发者，平台价值随技能数量指数增长，先发积累形成生态护城河。</div></div>
+      <div class="stream"><div class="stream-top"><div class="stream-title">技能生态</div><div class="stream-price">30%</div></div><div class="stream-sub">技能商店分成 · 类App Store</div><div class="stream-body">开放SDK吸引第三方开发者，平台价值随技能数量指数增长，先发积累形成生态护城河。技能通过 <a class="f-rss" href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">Robot Skill Store</a> 统一注册、治理与分发。</div></div>
     </div>
   </div>
 </section>
@@ -615,7 +648,7 @@ body:hover #cursor-dot { opacity: 0.7; }
   <h2 class="sec-title reveal">三阶段<br>市场渗透策略</h2>
   <div class="timeline">
     <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2026 — 技术验证期</div><h3 class="tphase-title">技术验证<br>&amp; 社区引爆</h3><ul class="tphase-items"><li>开发者版众筹：GitHub+YC社区</li><li>MVP定价 $299 区间</li><li>开源核心SDK，建立开发者社区</li><li>KOL联测：科技博主/程序员</li><li>目标：1万台预售，验证PMF</li></ul></div>
-    <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2027—2028 — 扩张期</div><h3 class="tphase-title">消费者扩张<br>&amp; 场景延伸</h3><ul class="tphase-items"><li>四条产品线同步上市</li><li>教育机构+游戏外设品牌合作</li><li>技能商店：100+第三方技能包</li><li>订阅服务正式上线</li><li>目标：ARR $1500万，用户10万+</li></ul></div>
+    <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2027—2028 — 扩张期</div><h3 class="tphase-title">消费者扩张<br>&amp; 场景延伸</h3><ul class="tphase-items"><li>四条产品线同步上市</li><li>教育机构+游戏外设品牌合作</li><li><a class="f-rss" href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">技能商店</a>：100+第三方技能包</li><li>订阅服务正式上线</li><li>目标：ARR $1500万，用户10万+</li></ul></div>
     <div class="tphase"><div class="tphase-dot"></div><div class="tphase-period">2029+ — 平台化</div><h3 class="tphase-title">平台化<br>&amp; 生态构建</h3><ul class="tphase-items"><li>开放硬件接口，第三方臂接入</li><li>企业版：会议室AI助手</li><li>数据飞轮：专属场景模型训练</li><li>显示器品牌内置战略合作</li><li>目标：估值$5亿+，B轮融资</li></ul></div>
   </div>
 </section>
@@ -660,6 +693,7 @@ body:hover #cursor-dot { opacity: 0.7; }
 
 <footer>
   <div class="f-logo">DESK<span>MATE</span> TECHNOLOGY · 2026</div>
+  <div class="f-rss">Robot Skill Store：<a href="../web_RSS/v6.82.00/zh/skills.html?cat=Companion" target="_blank">中文技能目录</a> · <a href="../web_RSS/v6.82.00/en/skills.html?cat=Companion" target="_blank">EN Skill Catalog</a></div>
   <div class="f-copy">COMMERCIAL IN CONFIDENCE · contact@deskmate.ai</div>
 </footer>
 
